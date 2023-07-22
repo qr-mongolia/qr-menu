@@ -1,9 +1,11 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import QRCode from "qrcode";
+import { Button } from "./ui/button";
 
 const QRCodeGenerator = ({ value }) => {
   const canvasRef = useRef(null);
+  const [name, setName] = useState("themuuln");
 
   useEffect(() => {
     if (value && canvasRef.current) {
@@ -28,7 +30,7 @@ const QRCodeGenerator = ({ value }) => {
         (blob) => {
           const downloadLink = document.createElement("a");
           downloadLink.href = URL.createObjectURL(blob);
-          downloadLink.download = "qrcode.png";
+          downloadLink.download = name + " QR";
           downloadLink.click();
         },
         "image/png",
@@ -39,11 +41,12 @@ const QRCodeGenerator = ({ value }) => {
 
   return (
     <>
-      <canvas ref={canvasRef} />
-      <button onClick={downloadQRCode}>Download</button>
+      <div className="">
+        <canvas ref={canvasRef} />
+      </div>
+      <Button onClick={downloadQRCode}>Download</Button>
     </>
   );
-  
 };
 
 export default QRCodeGenerator;
