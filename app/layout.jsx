@@ -1,9 +1,15 @@
-// "use client";
+"use client";
 import "./globals.css";
-import { Inter } from "next/font/google";
-// import { useState, useEffect } from "react";
+import { Inter, Poppins } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
+import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata = {
   title: "QR Generator",
@@ -11,24 +17,21 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  // const [data, setData] = useState([]);
-
-  // useEffect(() => {
-  //   fetchData();
-  // });
-
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await fetch("/api/data");
-  //     const jsonData = await response.json();
-  //     setData(jsonData);
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   }
-  // };
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={poppins.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+        >
+          <div className="container">
+            <Navbar />
+            {children}
+            <Footer />
+          </div>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
