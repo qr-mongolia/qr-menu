@@ -1,5 +1,10 @@
+"use client";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+
 const Menu = () => {
-  const data = [
+  const [menuData, setMenuData] = useState([
     {
       name: "Restaurant",
       type: "Restaurant",
@@ -14,26 +19,33 @@ const Menu = () => {
       menus: [
         {
           name: "Уух зүйлс",
+          path: "drink",
+          icon: "https://www.svgrepo.com/show/505208/juice.svg",
           items: [
             {
               name: "Гүзээлзгэнэтэй Коктэйл",
-              description: "A refreshing cocktail with tropical flavors.",
+              description:
+                "Оригинал бүтээгдэхүүнтэй коктэйл, тропик нөмөрлөн сэтгэл хол бүрийг өргөтгөн орчноороо бэхлэнэ.",
               price: "$10",
             },
             {
-              name: "Beer 2",
-              description: "A local craft beer with a hint of citrus.",
+              name: "Бир 2",
+              description:
+                "Байгалийн гайхамшигтай локаль сармис талтай бирийн төрөл.",
               price: "$5",
             },
             {
-              name: "Soft Drink 3",
-              description: "Soda, Cola, or other non-alcoholic beverages.",
+              name: "Софт Дарсан 3",
+              description: "Сод, Кола, эсвэл бусад биеийн алкогол бус зүйлс.",
               price: "$3",
             },
           ],
         },
         {
-          name: "Хоолны Зоос",
+          name: "1-р хоол",
+          // icon: "food.svg",
+          icon: "https://www.svgrepo.com/show/429379/bowl-food-noodle.svg",
+          path: "food",
           items: [
             {
               name: "Хамбургер 1",
@@ -55,33 +67,60 @@ const Menu = () => {
           ],
         },
         {
-          name: "Караоке Дууны Жагсаалт",
+          name: "2-р хоол",
+          icon: "https://www.svgrepo.com/show/429380/cooking-food-fried.svg",
+          // icon: "https://icons8.com/icon/By3PJyT0V992/noodles",
+          path: "food",
           items: [
             {
-              name: "Дууны Гарчиг 1",
-              artist: "Дуучин Нэр 1",
+              name: "Хамбургер 1",
+              description:
+                "Хамбургер биш, үхрийн хамбургер, сүүтэй болон овощтой.",
+              price: "$12",
             },
             {
-              name: "Дууны Гарчиг 2",
-              artist: "Дуучин Нэр 2",
+              name: "Паста 2",
+              description:
+                "Сонгосон томс, сонгосон соосгийг хавсралттай пастатай хол бүрийг өртсөн.",
+              price: "$15",
             },
             {
-              name: "Дууны Гарчиг 3",
-              artist: "Дуучин Нэр 3",
+              name: "Нахос 3",
+              description: "Цэцэг хийж, томсонд дүрэлж хамгаалсан нахос.",
+              price: "$8",
             },
           ],
         },
       ],
     },
-  ];
+  ]);
+  useEffect(() => {
+    console.log("menudata", menuData);
+  }, []);
   return (
     <>
-      <section className="h-screen">
-        <h1>
-          {data.map((i) => {
-            return <h1 key={i.name}>{i.name}</h1>;
-          })}
-        </h1>
+      <section className="flex flex-col items-center h-screen space-y-2">
+        {menuData.map((item, index) => (
+          <>
+            {item.menus.map((menu, index) => (
+              <Card
+                className={"w-[90%]"}
+                key={index}
+              >
+                <CardHeader className="space-y-2">
+                  <Image
+                    src={menu?.icon}
+                    className="w-[200px] self-center h-[200px]"
+                    width={100}
+                    height={100}
+                    alt="Menu Icon"
+                  />
+                  <CardTitle className="self-center">{menu?.name}</CardTitle>
+                </CardHeader>
+              </Card>
+            ))}
+          </>
+        ))}
       </section>
     </>
   );
