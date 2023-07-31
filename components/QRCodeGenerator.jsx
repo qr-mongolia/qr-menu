@@ -3,19 +3,24 @@ import { useEffect, useRef, useState } from "react";
 import QRCode from "qrcode";
 import { Button } from "./ui/button";
 
-const QRCodeGenerator = ({ value }) => {
+const QRCodeGenerator = ({ value, scale }) => {
   const canvasRef = useRef(null);
   const [name, setName] = useState("themuuln");
 
   useEffect(() => {
     if (value && canvasRef.current) {
-      QRCode.toCanvas(canvasRef.current, value, (error) => {
+      const options = {
+        width: canvasRef.current.width * scale,
+        height: canvasRef.current.height * scale,
+      };
+
+      QRCode.toCanvas(canvasRef.current, value, options, (error) => {
         if (error) {
           console.error("Error generating QR code:", error);
         }
       });
     }
-  }, [value]);
+  }, [value, scale]);
 
   const downloadQRCode = () => {
     if (canvasRef.current) {
@@ -41,8 +46,11 @@ const QRCodeGenerator = ({ value }) => {
 
   return (
     <>
-      <div className="">
-        <canvas ref={canvasRef} />
+      <div>
+        <canvas
+          className="border border-solid"
+          ref={canvasRef}
+        />
       </div>
       <Button onClick={downloadQRCode}>Download</Button>
     </>
