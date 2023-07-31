@@ -69,7 +69,7 @@ The SmartQR Menu will be accessible at `http://localhost:3000` by default.
 
 ## Demo
 
-A live demo of the SmartQR Menu can be found at [https://themuuln.github.io/qr-menu](https://themuuln.github.io/qr-menu).
+A live demo of the SmartQR Menu can be found at [https://qr-menu-themuuln.vercel.app](https://qr-menu-themuuln.vercel.app).
 
 ## Contributing
 
