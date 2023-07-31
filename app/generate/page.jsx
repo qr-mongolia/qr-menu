@@ -16,12 +16,17 @@ export default function Home() {
       <div className="flex flex-col items-center space-y-4">
         <div className="space-y-1">
           <Label>Enter your URL:</Label>
-          <Input
-            value={url}
-            onChange={qrInputHandler}
-          />
+          <div className="w-96">
+            <Input
+              value={url}
+              onChange={qrInputHandler}
+            />
+          </div>
         </div>
-        <QRCodeGenerator value={url} />
+        <QRCodeGenerator
+          scale={1}
+          value={url}
+        />
       </div>
     </main>
   );
