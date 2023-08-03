@@ -84,5 +84,3 @@ The SmartQR Menu is open-source software licensed under the [MIT License](LICENS
 We extend our gratitude to all the contributors and open-source projects that have made the development of the SmartQR Menu possible.
 
 ---
-
-Please review the updated README.md, make any necessary adjustments or additions, and then push it to your repository.
